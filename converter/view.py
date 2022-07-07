@@ -4,15 +4,17 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QRadioButton, QPushButton, QHB
 
 
 class MainConverterUI(QWidget):
+    name = None
+    items = []
+
     def __init__(self):
         super(MainConverterUI, self).__init__()
-        self.setWindowTitle('Converter')
-        self.setFixedSize(300, 300)
 
         self.general_layout = QVBoxLayout()
         self.setLayout(self.general_layout)
 
         self.create_menu()
+        self.create_label()
         self.in_unit = self.create_input_unit('From')
         self.input_area = self.create_display()
 
@@ -25,25 +27,29 @@ class MainConverterUI(QWidget):
         self.output_area = self.create_display()
         self.output_area.setReadOnly(True)
 
-
     def create_menu(self):
         menu_layout = QHBoxLayout()
-        mass = QRadioButton('Mass')
-        length = QRadioButton('Length')
-        menu_layout.addWidget(mass)
-        menu_layout.addWidget(length)
-        temperature = QRadioButton('Temperature')
-        temperature.setChecked(True)
-        menu_layout.addWidget(temperature)
+        self.mass = QRadioButton('Mass')
+        self.length = QRadioButton('Length')
+        menu_layout.addWidget(self.mass)
+        menu_layout.addWidget(self.length)
+        self.temperature = QRadioButton('Temperature')
+        # self.temperature.setChecked(True)
+        menu_layout.addWidget(self.temperature)
         menu_layout.setAlignment(Qt.AlignTop)
         self.general_layout.addLayout(menu_layout)
+
+    def create_label(self):
+        self.label = QLabel(self.name)
+        self.label.setAlignment(Qt.AlignCenter)
+        self.general_layout.addWidget(self.label)
 
     def create_input_unit(self, state):
         input_unit_layout = QHBoxLayout()
         label = QLabel(state)
         input_unit_layout.addWidget(label)
         input_unit = QComboBox()
-        input_unit.addItems(['Celsius', 'Kelvin', 'Fahrenheit'])
+        input_unit.addItems(self.items)
         input_unit_layout.addWidget(input_unit)
         self.general_layout.addLayout(input_unit_layout)
         return input_unit
@@ -57,3 +63,17 @@ class MainConverterUI(QWidget):
 
     def set_out_text(self, result):
         self.output_area.setText(result)
+
+
+class TempUI(MainConverterUI):
+    name = 'Temperature'
+    items = ['Celsius', 'Kelvin', 'Fahrenheit']
+
+
+class MassUI(MainConverterUI):
+    name = 'Mass'
+    items = ['Grams', 'Kilograms']
+
+
+class LengthUI(MainConverterUI):
+    pass

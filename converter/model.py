@@ -30,10 +30,17 @@ class TempConverter:
         return result
 
 
-class LengthConverter:
+class MassConverter:
     def __init__(self):
-        self.conversions = {}
+        self.conversions = {'Grams': self.to_grams, 'Kilograms': self.to_kilograms}
 
     @staticmethod
-    def to_metres():
+    def to_grams(value, unit):
+        if unit == 'Kilograms':
+            result = value / 1000
+        else: result = value
+        return result
+
+    @staticmethod
+    def to_kilograms():
         pass

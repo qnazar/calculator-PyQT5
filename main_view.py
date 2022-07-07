@@ -23,9 +23,9 @@ class MainUI(QMainWindow):
         self.current = self.calc_ctrl()
         self.setCentralWidget(self.current.initUI())
 
-    def switch_to_converter(self):
-        self.current = self.conv_ctrl()
-        self.setCentralWidget(self.current.initUI())
+    def switch_to_converter(self, mode='temp'):
+        self.current = self.conv_ctrl(self)
+        self.setCentralWidget(self.current.initUI(mode))
 
     def switch_to_engine(self):
         self.current = self.engine_ctrl()

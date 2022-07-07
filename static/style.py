@@ -518,4 +518,8 @@ QAbstractSpinBox {
     border-radius: 2px;
     min-width: 50px;
 }
+
+QLabel {
+    font-size: 16px;
+}
 """
