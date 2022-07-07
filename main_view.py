@@ -2,14 +2,16 @@ from PyQt5.QtWidgets import QMainWindow, QToolBar
 
 
 class MainUI(QMainWindow):
-    def __init__(self, calc_ctrl, conv_ctrl):
+    def __init__(self, calc_ctrl, conv_ctrl, engine_ctrl):
         """Initializing all main view configs"""
         super(MainUI, self).__init__()
         self.setWindowTitle('Calculator')
         self.setFixedSize(300, 320)
         self.create_tool_bar()
+
         self.calc_ctrl = calc_ctrl  # просто клас
         self.conv_ctrl = conv_ctrl
+        self.engine_ctrl = engine_ctrl
         self.switch_to_calculator()
 
     def create_tool_bar(self):
@@ -25,6 +27,10 @@ class MainUI(QMainWindow):
         self.current = self.conv_ctrl()
         self.setCentralWidget(self.current.initUI())
 
+    def switch_to_engine(self):
+        self.current = self.engine_ctrl()
+        self.setCentralWidget(self.current.initUI())
+
 
 class ToolBar(QToolBar):
     def __init__(self, parent: MainUI):
@@ -33,5 +39,6 @@ class ToolBar(QToolBar):
 
     def create_buttons(self, parent):
         self.addAction('Calculator', parent.switch_to_calculator)
+        self.addAction('Engineering', parent.switch_to_engine)
         self.addAction('Converter', parent.switch_to_converter)
         self.addAction('Exit', parent.close)

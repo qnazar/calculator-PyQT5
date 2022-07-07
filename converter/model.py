@@ -28,3 +28,12 @@ class TempConverter:
             result = value * 1.8 - 459.67
         else: result = value
         return result
+
+
+class LengthConverter:
+    def __init__(self):
+        self.conversions = {}
+
+    @staticmethod
+    def to_metres():
+        pass
