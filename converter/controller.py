@@ -1,5 +1,5 @@
-from converter.view import MainConverterUI, TempUI, MassUI
-from converter.model import TempConverter, MassConverter
+from converter.view import MainConverterUI, TempUI, MassUI, LengthUI
+from converter.model import TempConverter, MassConverter, LengthConverter
 from main_view import MainUI
 
 
@@ -10,9 +10,11 @@ class ConvController:
 
         self.temp_ui = TempUI
         self.mass_ui = MassUI
+        self.length_ui = LengthUI
 
         self.temp_model = TempConverter
         self.mass_model = MassConverter
+        self.length_model = LengthConverter
 
         # self.view
         # self.model

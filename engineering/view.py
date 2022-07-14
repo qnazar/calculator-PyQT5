@@ -37,6 +37,6 @@ class EngineeringCalcUI(SimpleCalcUI):
                    }
         for btn_txt, position in buttons.items():
             self.buttons[btn_txt] = QPushButton(btn_txt)
-            self.buttons[btn_txt].setFixedSize(50, 50)
+            self.buttons[btn_txt].setFixedSize(45, 45)
             buttons_layout.addWidget(self.buttons[btn_txt], position[0], position[1])
         self.general_layout.addLayout(buttons_layout)

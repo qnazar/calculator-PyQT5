@@ -49,6 +49,7 @@ class MainConverterUI(QWidget):
         label = QLabel(state)
         input_unit_layout.addWidget(label)
         input_unit = QComboBox()
+        input_unit.setFixedSize(200, 30)
         input_unit.addItems(self.items)
         input_unit_layout.addWidget(input_unit)
         self.general_layout.addLayout(input_unit_layout)
@@ -76,4 +77,5 @@ class MassUI(MainConverterUI):
 
 
 class LengthUI(MainConverterUI):
-    pass
+    name = 'Length'
+    items = ['Metres', 'Inches']

@@ -32,15 +32,41 @@ class TempConverter:
 
 class MassConverter:
     def __init__(self):
-        self.conversions = {'Grams': self.to_grams, 'Kilograms': self.to_kilograms}
+        self.conversions = {'Grams': self.to_grams, 'Kilograms': self.to_kilograms, 'Milligrams': self.to_milligrams,
+                            'Pounds': self.to_pounds}
 
     @staticmethod
     def to_grams(value, unit):
         if unit == 'Kilograms':
             result = value / 1000
+        elif unit == 'Milligrams':
+            result = value * 1000
+        elif unit == 'Pounds':
+            result = value * 453.59237
         else: result = value
         return result
 
     @staticmethod
-    def to_kilograms():
+    def to_kilograms(value, unit):
+        pass
+
+    @staticmethod
+    def to_milligrams(value, unit):
+        pass
+
+    @staticmethod
+    def to_pounds(value, unit):
+        pass
+
+
+class LengthConverter:
+    def __init__(self):
+        self.conversions = {'Metres': self.to_metres, 'Inches': self.to_inches}
+
+    @staticmethod
+    def to_metres(value, unit):
+        pass
+
+    @staticmethod
+    def to_inches(value, unit):
         pass
