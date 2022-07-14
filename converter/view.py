@@ -73,7 +73,7 @@ class TempUI(MainConverterUI):
 
 class MassUI(MainConverterUI):
     name = 'Mass'
-    items = ['Grams', 'Kilograms']
+    items = ['Grams', 'Kilograms', 'Milligrams', 'Pounds', 'Ounce']
 
 
 class LengthUI(MainConverterUI):
