@@ -80,14 +80,77 @@ class MassConverter:
         grams = MassConverter.to_grams(value, unit)
         return grams * 0.0352739619
 
+
 class LengthConverter:
     def __init__(self):
-        self.conversions = {'Metres': self.to_metres, 'Inches': self.to_inches}
+        self.conversions = {'Metres': self.to_metres, 'Kilometres': self.to_kilometres, 'Inches': self.to_inches,
+                            'Centimetres': self.to_centimetres, 'Millimetres': self.to_millimetres,
+                            'Miles': self.to_miles, 'Yards': self.to_yards, 'Feet': self.to_feet}
 
     @staticmethod
     def to_metres(value, unit):
-        pass
+        if unit == 'Kilometres':
+            result = value * 1000
+        elif unit == 'Inches':
+            result = value * 0.254
+        elif unit == 'Centimetres':
+            result = value / 100
+        elif unit == 'Millimetres':
+            result = value / 1000
+        elif unit == 'Miles':
+            result = value * 1609.344
+        elif unit == 'Yards':
+            result = value * 0.9144
+        elif unit == 'Feet':
+            result = value * 0.3048
+        else: result = value
+        return result
+
+    @staticmethod
+    def to_kilometres(value, unit):
+        if unit == 'Kilometres':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return m / 1000
+
+    @staticmethod
+    def to_centimetres(value, unit):
+        if unit == 'Centimetres':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return m * 100
+
+    @staticmethod
+    def to_millimetres(value, unit):
+        if unit == 'Millimetres':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return m * 1000
+
+    @staticmethod
+    def to_miles(value, unit):
+        if unit == 'Miles':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return round(m * 0.000621371192, 3)
 
     @staticmethod
     def to_inches(value, unit):
-        pass
+        if unit == 'Inches':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return round(m * 39.3700787, 3)
+
+    @staticmethod
+    def to_yards(value, unit):
+        if unit == 'Yards':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return round(m * 1.0936133, 3)
+
+    @staticmethod
+    def to_feet(value, unit):
+        if unit == 'Feet':
+            return value
+        m = LengthConverter.to_metres(value, unit)
+        return round(m * 3.2808399, 3)

@@ -126,6 +126,7 @@ QComboBox
     border-style: solid;
     border: 1px solid #1e1e1e;
     border-radius: 5;
+    font-size: 12px;
 }
 
 QComboBox:hover,QPushButton:hover
@@ -140,6 +141,7 @@ QComboBox:on
     padding-left: 4px;
     background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
     selection-background-color: #ffaa00;
+    font-size: 12px;
 }
 
 QComboBox QAbstractItemView
@@ -159,6 +161,7 @@ QComboBox::drop-down
      border-left-style: solid; /* just a single line */
      border-top-right-radius: 3px; /* same radius as the QComboBox */
      border-bottom-right-radius: 3px;
+     font-size: 20px;
  }
 
 QComboBox::down-arrow

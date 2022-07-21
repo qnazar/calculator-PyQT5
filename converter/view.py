@@ -19,9 +19,9 @@ class MainConverterUI(QWidget):
         self.input_area = self.create_display()
 
         self.result = QPushButton('Convert')
-        self.result.setFixedSize(100, 40)
+        self.result.setFixedSize(300, 35)
 
-        self.general_layout.addWidget(self.result)
+        self.general_layout.addWidget(self.result, alignment=Qt.AlignVCenter)
 
         self.out_unit = self.create_input_unit('To')
         self.output_area = self.create_display()
@@ -41,13 +41,12 @@ class MainConverterUI(QWidget):
 
     def create_label(self):
         self.label = QLabel(self.name)
-        self.label.setAlignment(Qt.AlignCenter)
-        self.general_layout.addWidget(self.label)
+        self.general_layout.addWidget(self.label, alignment=Qt.AlignCenter)
 
     def create_input_unit(self, state):
         input_unit_layout = QHBoxLayout()
         label = QLabel(state)
-        input_unit_layout.addWidget(label)
+        input_unit_layout.addWidget(label, alignment=Qt.AlignCenter)
         input_unit = QComboBox()
         input_unit.setFixedSize(200, 30)
         input_unit.addItems(self.items)
@@ -78,4 +77,4 @@ class MassUI(MainConverterUI):
 
 class LengthUI(MainConverterUI):
     name = 'Length'
-    items = ['Metres', 'Inches']
+    items = ['Metres', 'Kilometres', 'Centimetres', 'Millimetres', 'Inches', 'Miles', 'Yards', 'Feet']
