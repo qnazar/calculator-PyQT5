@@ -34,7 +34,6 @@ class MainConverterUI(QWidget):
         menu_layout.addWidget(self.mass)
         menu_layout.addWidget(self.length)
         self.temperature = QRadioButton('Temperature')
-        # self.temperature.setChecked(True)
         menu_layout.addWidget(self.temperature)
         menu_layout.setAlignment(Qt.AlignTop)
         self.general_layout.addLayout(menu_layout)

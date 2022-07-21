@@ -21,14 +21,17 @@ class MainUI(QMainWindow):
 
     def switch_to_calculator(self):
         self.current = self.calc_ctrl()
+        self.setFixedSize(300, 320)
         self.setCentralWidget(self.current.initUI())
 
     def switch_to_converter(self, mode='temp'):
         self.current = self.conv_ctrl(self)
+        self.setFixedSize(300, 320)
         self.setCentralWidget(self.current.initUI(mode))
 
     def switch_to_engine(self):
         self.current = self.engine_ctrl()
+        self.setFixedSize(300, 420)
         self.setCentralWidget(self.current.initUI())
 
 

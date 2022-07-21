@@ -6,7 +6,6 @@ from main_view import MainUI
 class ConvController:
     def __init__(self, uplevel: MainUI):
         self.main_ctrl = uplevel
-        # self.main_ctrl.switch_to_converter()
 
         self.temp_ui = TempUI
         self.mass_ui = MassUI
@@ -15,9 +14,6 @@ class ConvController:
         self.temp_model = TempConverter
         self.mass_model = MassConverter
         self.length_model = LengthConverter
-
-        # self.view
-        # self.model
 
     def initUI(self, mode='temp'):
         if mode == 'temp':

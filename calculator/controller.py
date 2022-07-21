@@ -33,7 +33,8 @@ class CalcController:
         if sign == '(':  # can be putted only after the operand
             return True if self.view.display_text()[-1] in operands else False
         if sign == ')':  # only with presence of '(' and only after digit
-            return True if '(' in self.view.display_text() and self.view.display_text()[-1].isdecimal() else False
+            return True if '(' in self.view.display_text() and self.view.display_text()[-1].isdecimal() \
+                           or self.view.display_text()[-1] == ')'else False
         if self.view.display_text()[-1] in operands and sign in operands:
             return False
         return True
