@@ -32,7 +32,7 @@ class EngineCtrl(CalcController):
     def validate_input(self, sign):
         operators = '+-**//%'
         last_char = self.view.display_text()[-1] if self.view.display_text() else None
-        if sign.isdecimal():  # no problems with digits
+        if sign.isdecimal() or sign in {'3.14', '2.718'}:  # no problems with digits
             return True
         if len(self.view.display_text()) == 0:  # first position can be digit, - or (
             return True if sign in '-(' else False
@@ -48,9 +48,13 @@ class EngineCtrl(CalcController):
 
     def connect_signals(self):
         for btn_txt, btn in self.view.buttons.items():
-            if btn_txt not in {'=', 'C', 'MS', 'MR'}:
+            if btn_txt not in {'=', 'C', 'MS', 'MR', 'п', 'e', 'x^y', 'x²'}:
                 btn.clicked.connect(partial(self.build_expression, btn_txt))
         self.view.buttons['='].clicked.connect(self.calculate_result)
         self.view.display.returnPressed.connect(self.calculate_result)
         self.view.buttons['C'].clicked.connect(self.view.clear_display)
+        self.view.buttons['п'].clicked.connect(partial(self.build_expression, '3.14'))
+        self.view.buttons['e'].clicked.connect(partial(self.build_expression, '2.718'))
+        self.view.buttons['x^y'].clicked.connect(partial(self.build_expression, '**'))
+        self.view.buttons['x²'].clicked.connect(partial(self.build_expression, '**2'))
         return True
