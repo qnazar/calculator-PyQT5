@@ -1,8 +1,6 @@
-
-
 class EngineModel:
     def __init__(self):
-        pass
+        self.memory = 0
 
     @staticmethod
     def evaluate(expression):
@@ -43,6 +41,12 @@ class EngineModel:
 
     @staticmethod
     def factorial(n):
+        if not isinstance(n, int):
+            return 'ERROR'
         if n == 1:
             return 1
         return n * EngineModel.factorial(n-1)
+
+    @staticmethod
+    def sqrt(n):
+        return n ** 0.5
