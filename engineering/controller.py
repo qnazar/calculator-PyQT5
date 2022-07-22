@@ -36,6 +36,9 @@ class EngineCtrl(CalcController):
         elif sub_exp == '√' and permission:
             expression, last_operand = self.model.get_last_operand(self.view.display_text())
             expression = expression + str(self.model.sqrt(eval(last_operand)))
+        elif sub_exp == '+/-' and permission:
+            expression, last_operand = self.model.get_last_operand(self.view.display_text())
+            expression = expression + self.model.negotiation(last_operand)
         else:
             expression = self.view.display_text() + sub_exp if permission else self.view.display_text() + ''
         self.view.set_display_text(expression)
@@ -49,11 +52,14 @@ class EngineCtrl(CalcController):
             return True if len(self.view.display_text()) == 0 or last_char in operators else False
         if len(self.view.display_text()) == 0:  # first position can be digit, - or (
             return True if sign in '-(' else False
+        if sign == '.':
+            expression, last_operand = self.model.get_last_operand(self.view.display_text())
+            return True if last_char not in operators and sign not in last_operand else False
         if sign == '(':  # can be putted only after the operand
             return True if last_char in operators else False
         if sign == ')':  # only with presence of '(' and only after digit
             return True if '(' in self.view.display_text() and last_char.isdecimal() or last_char == ')' else False
-        if sign == 'n!' or sign == '√':
+        if sign == 'n!' or sign == '√' or sign == '+/-':
             return True if last_char.isdigit() or last_char == ')' else False
         if last_char in operators and sign in operators:
             return False

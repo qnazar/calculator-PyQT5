@@ -50,3 +50,7 @@ class EngineModel:
     @staticmethod
     def sqrt(n):
         return n ** 0.5
+
+    @staticmethod
+    def negotiation(n: str) -> str:
+        return f'(-{n})'

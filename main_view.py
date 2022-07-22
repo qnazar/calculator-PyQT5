@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QToolBar
+from PyQt5 import QtGui
 
 
 class MainUI(QMainWindow):
@@ -6,10 +7,11 @@ class MainUI(QMainWindow):
         """Initializing all main view configs"""
         super(MainUI, self).__init__()
         self.setWindowTitle('Calculator')
+        self.setWindowIcon(QtGui.QIcon('static/icon.png'))
         self.setFixedSize(300, 320)
         self.create_tool_bar()
 
-        self.calc_ctrl = calc_ctrl  # просто клас
+        self.calc_ctrl = calc_ctrl
         self.conv_ctrl = conv_ctrl
         self.engine_ctrl = engine_ctrl
         self.switch_to_calculator()
