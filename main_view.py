@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QToolBar
 from PyQt5 import QtGui
+from PyQt5.QtCore import Qt
 
 
 class MainUI(QMainWindow):
@@ -35,6 +36,16 @@ class MainUI(QMainWindow):
         self.current = self.engine_ctrl()
         self.setFixedSize(300, 420)
         self.setCentralWidget(self.current.initUI())
+
+    def keyPressEvent(self, e: QtGui.QKeyEvent) -> None:
+        if e.key() == Qt.Key_Escape:
+            self.centralWidget().close()
+        elif e.key() == Qt.Key_F1:
+            self.switch_to_calculator()
+        elif e.key() == Qt.Key_F2:
+            self.switch_to_engine()
+        elif e.key() == Qt.Key_F3:
+            self.switch_to_converter()
 
 
 class ToolBar(QToolBar):

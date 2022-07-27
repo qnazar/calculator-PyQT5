@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLineEdit, QPushButton
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
 
 
 class SimpleCalcUI(QWidget):
@@ -61,3 +62,31 @@ class SimpleCalcUI(QWidget):
 
     def clear_display(self):
         self.set_display_text('')
+
+    def keyPressEvent(self, e: QtGui.QKeyEvent) -> None:
+        if e.key() == Qt.Key_C:
+            self.clear_display()
+        else:
+            permission = self.validate_input(e.text())
+            if permission:
+                self.set_display_text(self.display_text() + e.text())
+
+    def validate_input(self, sign):
+        operators = '+-**//%'
+        last_char = self.display_text()[-1] if self.display_text() else ''
+
+        if sign.isdecimal():  # no problems with digits
+            return True
+        if len(self.display_text()) == 0:  # first position can be digit, - or (
+            return True if sign in '-(' else False
+        if last_char == '(':
+            return True if sign.isdecimal() or sign == '-' else False
+        if sign in operators:
+            return True if last_char not in operators else False
+        if sign == '(':  # can be putted only after the operand
+            return True if last_char in operators else False
+        if sign == ')':  # only with presence of '(' and only after digit
+            return True if '(' in self.display_text() and last_char.isdecimal() or last_char == ')' else False
+        if last_char in operators and sign in operators:
+            return False
+        return False
